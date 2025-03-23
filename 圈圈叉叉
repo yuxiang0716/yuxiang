@@ -1,0 +1,165 @@
+#include <bits/stdc++.h>
+using namespace std;
+int win=0,c=0;;
+int ma[3][3];
+
+int cheak()
+{
+	
+	for(int i=0;i<3;i++)
+	{
+	if(ma[i][0]==1&&ma[i][1]==1&&ma[i][2]==1)
+				{
+					win=1;
+					break;
+				}
+	if(ma[0][i]==1&&ma[1][i]==1&&ma[2][i]==1)
+				{
+					win=1;
+					break;
+				}
+	if(ma[0][0]==1&&ma[1][1]==1&&ma[2][2]==1)
+				{
+					win=1;
+					break;
+				}
+	if(ma[0][2]==1&&ma[1][1]==1&&ma[2][0]==1)
+				{
+					win=1;
+					break;
+				}			
+	}
+	for(int i=0;i<3;i++)
+	{
+	if(ma[i][0]==2&&ma[i][1]==2&&ma[i][2]==2)
+				{
+					win=2;
+					break;
+				}
+	if(ma[0][i]==2&&ma[1][i]==2&&ma[2][i]==2)
+				{
+					win=2;
+					break;
+				}
+	if(ma[0][0]==2&&ma[1][1]==2&&ma[2][2]==2)
+				{
+					win=2;
+					break;
+				}
+	if(ma[0][2]==2&&ma[1][1]==2&&ma[2][0]==2)
+				{
+					win=2;
+					break;
+				}			
+	}
+	if(c>8)
+		{
+			win=4;
+			
+		}
+		
+	
+	
+}
+int main()
+{	
+	cout<<"first number is List Second number is line 0-2"<<endl;
+	int a,b;
+	for(int i=0;i<3;i++)
+		{
+			for(int j=0;j<3;j++)
+				{
+					ma[i][j]=0;
+				}
+		}
+	bool qq=true;
+	while(qq==true)
+		{
+			cout<<"A ENTER";
+			cin>>a>>b;
+			c++;
+			
+			if(ma[a][b]==1||ma[a][b]==2)
+			{
+				cout<<"Invalid enter again";
+				cin>>a>>b;
+				ma[a][b]=1;
+			}
+			if(ma[a][b]==0)
+			{
+				ma[a][b]=1;
+			}
+			for(int i=0;i<3;i++)
+				{
+					for(int j=0;j<3;j++)
+						{
+							cout<<ma[i][j];
+						}
+						cout<<endl;
+				}
+			
+				cheak();
+			if(win==4)
+			{
+				cout<<"DRAW";
+				break;
+			}
+			if(win==1)
+			{
+				cout<<"A WIN";
+				break;
+			}
+			if(win==2)
+			{
+				cout<<"B WIN";
+				break;
+			}
+			
+			
+			
+			cout<<"B ENTER";
+			cin>>a>>b;
+			c++;
+			
+			if(ma[a][b]==1||ma[a][b]==2)
+			{
+				cout<<"Invalid enter again";
+				cin>>a>>b;
+				ma[a][b]=2;
+			}
+			if(ma[a][b]==0)
+			{
+				ma[a][b]=2;
+			}
+			for(int i=0;i<3;i++)
+				{
+					for(int j=0;j<3;j++)
+						{
+							cout<<ma[i][j];
+						}
+						cout<<endl;
+				}
+			cheak();
+			if(win==4)
+			{
+				cout<<"DRAW";
+				break;
+			}
+			if(win==1)
+			{
+				cout<<"A WIN";
+				break;
+			}
+			if(win==2)
+			{
+				cout<<"B WIN";
+				break;
+			}
+			
+			
+		}
+	
+	
+
+	return 0;
+}
