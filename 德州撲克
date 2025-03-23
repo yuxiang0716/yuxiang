@@ -1,0 +1,998 @@
+ #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <algorithm>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    // 使用時間作為種子，以確保每次運行都能生成不同的隨機數序列
+    srand(time(nullptr));
+
+    int b=0;
+    int c;
+    int d;
+    int z100=0;
+    int z200=0;
+
+    // 定義一個整數數組a1來存儲9個隨機數
+    int a1[9]={0};
+
+    // 生成9個隨機數並存儲到a1數組中
+    for (int i = 0; i < 9; ++i) {
+        a1[i] = rand() % 52 + 1; // 生成1到52之間的隨機數
+            
+            
+            b=0;
+        
+        for (int j=0;j<9;j++)
+        
+        {
+            if(a1[j]==a1[i])
+            {
+                b=b+1;
+            }
+            if(b==2)
+            {
+                i=i-1;
+            }
+        }
+
+        
+    }
+
+    // 輸出這9個隨機數
+    
+    for (int i = 0; i < 9; i++) 
+    {
+        
+        if(i==0)
+        cout<< "你的牌:"<<endl;
+
+        if(i==2)
+        cout<< "電腦的牌:"<<endl;
+
+        if(i==4)
+        cout<< "公共牌:"<<endl;
+        
+        if (a1[i]>0 and a1[i]<14)
+        {
+        if(a1[i]%13==0)
+        {
+            cout<<"黑桃13"<<endl;
+        }
+        else
+        cout<<"黑桃"<<a1[i]%13<<endl;
+        
+        }
+        if (a1[i]>13 and a1[i]<27)
+
+        {
+        if(a1[i]%13==0)
+        {
+            cout<<"梅花13"<<endl;
+        }
+        else
+        cout<<"梅花"<<a1[i]%13<<endl;
+        
+        }
+
+        if (a1[i]>26 and a1[i]<40)
+        {
+        if(a1[i]%13==0)
+        {
+            cout<<"菱形13"<<endl;
+        }
+        else
+        cout<<"菱形"<<a1[i]%13<<endl;
+        
+        }
+
+        if (a1[i]>39 and a1[i]<53)
+        {
+        if(a1[i]%13==0)
+        {
+            cout<<"愛心13"<<endl;
+        }
+        else
+        cout<<"愛心"<<a1[i]%13<<endl;
+        
+        }
+
+        if(i==1)
+        cout<< endl;
+
+        if(i==3)
+        cout<< endl;
+
+
+
+
+     
+
+       
+        
+    
+    }
+    //開始計算==
+
+        int a2[53]={0};
+
+        for(int p=0;p<9;p++)
+        {
+            c=a1[p];
+            a2[c]=a2[c]+1;
+        }
+        
+        int s1=0,c1=0,d1=0,h1=0;
+        int s2=0,c2=0,d2=0,h2=0;
+        int aa1[14]={0},aa2[14]={0};
+        for(int y=0;y<9;y++)
+        {
+            if(a1[y]>0 and a1[y]<14)
+            {
+                s1++;
+            }
+            if(a1[y]>13 and a1[y]<27)
+            {
+                c1++;
+            }
+            if(a1[y]>26 and a1[y]<40)
+            {
+                d1++;
+            }
+            if(a1[y]>39 and a1[y]<53)
+            {
+                h1++;
+            }
+            d=a1[y]%13;
+
+            if(d%13!=0)
+            {
+                aa1[d]=aa1[d]+1;
+            }
+            else
+            {
+                aa1[13]=aa1[13]+1;
+            }
+            if(y==1)
+            y=y+2;
+
+        }
+        for(int y=2;y<9;y++)
+        {
+            if(a1[y]>0 and a1[y]<14)
+            {
+                s2++;
+            }
+            if(a1[y]>13 and a1[y]<27)
+            {
+                c2++;
+            }
+            if(a1[y]>26 and a1[y]<40)
+            {
+                d2++;
+            }
+            if(a1[y]>39 and a1[y]<53)
+            {
+                h2++;
+            }
+            d=a1[y]%13;
+
+            if(d%13!=0)
+            {
+                aa2[d]=aa2[d]+1;
+                
+            }
+            else
+            {
+                aa2[13]=aa2[13]+1;
+            }
+            
+
+            }
+            //判斷玩家
+            int cheak=0;
+            
+
+            cout<<endl<<"玩家的牌"<<endl<<endl;
+            for (int d=100;d>1;d++)
+            {
+                //同花順
+                if(s1>5)
+                {
+                   
+                    for(int i1=1;i1<10;i1++)
+                    {
+
+                        if(a1[i1]==1 && a1[i1+1]==1 && a1[i1+2]==1 && a1[i1+3]==1 && a1[i1+4]==1)
+                        {
+                            cheak=9;
+                            z100=i1+4;
+                        }
+                        
+
+                    }
+                    if(cheak==9)
+                    {
+                        cout<<"黑桃同花順";
+                        break;
+                    }
+                }
+                if(c1>5)
+                {
+                   
+                    for(int i1=14;i1<23;i1++)
+                    {
+
+                        if(a1[i1]==1 && a1[i1+1]==1 && a1[i1+2]==1 && a1[i1+3]==1 && a1[i1+4]==1)
+                        {
+                            cheak=9;
+                            z100=i1+4;
+                        }
+                        
+
+                    }
+                    if(cheak==9)
+                    {
+                        cout<<"梅花同花順";
+                        break;
+                    }
+                }
+                if(d1>5)
+                {
+                   
+                    for(int i1=27;i1<36;i1++)
+                    {
+
+                        if(a1[i1]==1 && a1[i1+1]==1 && a1[i1+2]==1 && a1[i1+3]==1 && a1[i1+4]==1)
+                        {
+                            cheak=9;
+                            z100=i1+4;
+                        }
+                        
+
+                    }
+                    if(cheak==9)
+                    {
+                        cout<<"菱形同花順";
+                        break;
+                    }
+                }
+                if(h1>5)
+                {
+                   
+                    for(int i1=40;i1<49;i1++)
+                    {
+
+                        if(a1[i1]==1 && a1[i1+1]==1 && a1[i1+2]==1 && a1[i1+3]==1 && a1[i1+4]==1)
+                        {
+                            cheak=9;
+                            z100=i1+4;
+                        }
+                        
+
+                    }
+                    if(cheak==9)
+                    {
+                        cout<<"愛心同花順";
+                        break;
+                    }
+                }
+                if(cheak==9)
+                break;
+                //鐵支
+                for (int i2=1;i2<14;i2++)
+                {
+                    if(aa1[i2]>3)
+                    {
+                        cout<<"鐵支"<<i2;
+                        cheak=8;
+                        z100=i2;
+                    break;
+                    }
+                }
+                if(cheak==8)
+                break;
+                //同花 
+                if(s1>4)
+                {
+                    cout<<"黑桃同花";
+                    if(a1[1]==1)
+                    {
+                        z100=100;
+                    }
+                    else
+                    for(int o=13;o>1;o=o-1)
+                    {
+                        if(a1[o]==1)
+                        {
+                            z100=o;
+                            break;
+                        }
+                    }
+                    cheak=7;
+                    break;
+                    
+                }
+                if(c1>4)
+                {
+                    cout<<"梅花同花";
+                    if(a1[14]==1)
+                    {
+                        z100=100;
+                    }
+                    else
+                    for(int o=26;o>14;o=o-1)
+                    {
+                        if(a1[o]==1)
+                        {
+                            z100=o;
+                            break;
+                        }
+                    }
+                    cheak=7;
+                    break;
+                    
+                }
+                if(d1>4)
+                {
+                    cout<<"菱形同花";
+                    if(a1[27]==1)
+                    {
+                        z100=100;
+                    }
+                    else
+                    for(int o=39;o>27;o=o-1)
+                    {
+                        if(a1[o]==1)
+                        {
+                            z100=o;
+                            break;
+                        }
+                    }
+                    cheak=7;
+                    break;
+                    
+                }
+                if(h1>4)
+                {
+                    cout<<"愛心同花";
+                    if(a1[40]==1)
+                    {
+                        z100=100;
+                    }
+                    else
+                    for(int o=52;o>40;o=o-1)
+                    {
+                        if(a1[o]==1)
+                        {
+                            z100=o;
+                            break;
+                        }
+                    }
+                    cheak=7;
+                    break;
+                    
+                }
+                if(cheak==7)
+                break;
+                
+                //順子
+                for(int i3=1;i3<10;i3++)
+                    {
+
+                        if(aa1[i3]>=1 && aa1[i3+1]>=1 && aa1[i3+2]>=1 && aa1[i3+3]>=1 && aa1[i3+4]>=1)
+                        {
+                            cheak=6;
+                            if(cheak==6)
+                        {   
+                            z100=i3+4;
+                            cout<<"順子"<<i3<<i3+1<<i3+2<<i3+3<<i3+4;
+                            break;
+                        }
+                        }
+                        
+
+                    }
+                    if(cheak==6)
+                break;
+
+                //葫蘆
+                for(int i4=1;i4<14;i4++)
+                {
+                    if (aa1[i4]==3)
+                    {
+                        for(int i5=1;i5<14;i5++)
+                        {
+                            if(aa1[i5]==2)
+                            {
+                                z100=i4*100+i5;
+                                cout<<"葫蘆"<<i4<<" "<<i5;
+                                cheak=5;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if(cheak==5)
+                break;
+                //三條
+                for(int i6=1;i6<14;i6++)
+                {
+                    if (aa1[i6]==3)
+                    {   
+                        z100=i6;
+                        cout<<"三條"<<i6;
+                        cheak=4;
+                    }
+                }
+                if(cheak==4)
+                break;
+                //兩對 一對
+                int z=0;
+                for(int i7=1;i7<14;i7++)
+                {
+                    if (aa1[i7]==2)
+                    {   
+                        
+                        z++;
+                        cout<<i7<<endl;
+                        if(aa1[1]>1)
+                        {
+                        z100=100;
+                        break;
+                        }
+                        for(int p=13;p>2;p=p-1)
+                        {
+                            if(aa1[p]>1)
+                            {
+                                z100=p;
+                                break;
+                            }
+                        }
+                    }
+                    
+                }
+                if(z>1)
+                    {
+                    cout<<"兩對";
+                        cheak=3;
+                        break;
+                    }
+                    if(z==1)
+                    {
+                    cout<<"一對";
+                        cheak=2;
+                        break;
+                    }
+                    if(cheak==3)
+                break;
+                if(cheak==2)
+                break;
+
+                //高牌
+                    
+                    
+                        if(aa1[1]==1)
+                        {
+                            cout<<"高牌"<<"A";
+                            z100=100;
+                            cheak=1;
+                            break;
+                        }
+                        if(aa1[13]==1)
+                        {
+                            cout<<"高牌"<<"K";
+                            z100=13;
+                            cheak=1;
+                            break;
+                        }
+                        if(aa1[12]==1)
+                        {
+                            cout<<"高牌"<<"Q";
+                            z100=12;
+                            cheak=1;
+                            break;
+                        }
+                        if(aa1[11]==1)
+                        {
+                            cout<<"高牌"<<"J";
+                            z100=11;
+                            cheak=1;
+                            break;
+                        }
+                        if(aa1[10]==1)
+                        {
+                            cout<<"高牌"<<"10";
+                            z100=10;
+                            cheak=1;
+                            break;
+                        }
+                        if(aa1[9]==1)
+                        {
+                            cout<<"高牌"<<"9";
+                            z100=9;
+                            cheak=1;
+                            break;
+                        }
+                        if(aa1[8]==1)
+                        {
+                            cout<<"高牌"<<"8";
+                            z100=8;
+                            cheak=1;
+                            break;
+                        }
+                        if(aa1[7]==1)
+                        {
+                            cout<<"高牌"<<"7";
+                            z100=7;
+                            cheak=1;
+                            break;
+                        }
+                        if(aa1[61]==1)
+                        {
+                            cout<<"高牌"<<"6";
+                            z100=6;
+                            cheak=1;
+                            break;
+                        }
+                        if(aa1[5]==1)
+                        {
+                            cout<<"高牌"<<"5";
+                            z100=5;
+                            cheak=1;
+                            break;
+                        }
+                        if(aa1[4]==1)
+                        {
+                            cout<<"高牌"<<"4";
+                            z100=4;
+                            cheak=1;
+                            break;
+                        }
+                        if(aa1[3]==1)
+                        {
+                            cout<<"高牌"<<"3";
+                            z100=3;
+                            cheak=1;
+                            break;
+                        }
+                        if(aa1[2]==1)
+                        {
+                            cout<<"高牌"<<"2";
+                            z100=2;
+                            cheak=1;
+                            break;
+                        }
+
+                    
+
+
+
+                
+
+            }
+            cout<<endl<<"cheak="<<cheak<<endl;
+            
+           
+            
+            //判斷電腦
+            int cheak1=0;
+            cout<<endl<<"電腦的牌"<<endl<<endl;
+            for (int d=100;d>1;d++)
+            {
+                //同花順
+                if(s2>5)
+                {
+                   
+                    for(int i1=1;i1<10;i1++)
+                    {
+
+                        if(a1[i1]==1 && a1[i1+1]==1 && a1[i1+2]==1 && a1[i1+3]==1 && a1[i1+4]==1)
+                        {
+                            z200=i1+4;
+                            cheak1=9;
+                        }
+                        
+
+                    }
+                    if(cheak1==9)
+                    {
+                        cout<<"黑桃同花順";
+                        break;
+                    }
+                }
+                if(c2>5)
+                {
+                   
+                    for(int i1=14;i1<23;i1++)
+                    {
+
+                        if(a1[i1]==1 && a1[i1+1]==1 && a1[i1+2]==1 && a1[i1+3]==1 && a1[i1+4]==1)
+                        {
+                            z200=i1+4;
+                            cheak1=9;
+                        }
+                        
+
+                    }
+                    if(cheak1==9)
+                    {
+                        cout<<"梅花同花順";
+                        break;
+                    }
+                }
+                if(d2>5)
+                {
+                   
+                    for(int i1=27;i1<36;i1++)
+                    {
+
+                        if(a1[i1]==1 && a1[i1+1]==1 && a1[i1+2]==1 && a1[i1+3]==1 && a1[i1+4]==1)
+                        {
+                            z200=i1+4;
+                            cheak1=9;
+                        }
+                        
+
+                    }
+                    if(cheak1==9)
+                    {
+                        cout<<"菱形同花順";
+                        break;
+                    }
+                }
+                if(h2>5)
+                {
+                   
+                    for(int i1=40;i1<49;i1++)
+                    {
+
+                        if(a1[i1]==1 && a1[i1+1]==1 && a1[i1+2]==1 && a1[i1+3]==1 && a1[i1+4]==1)
+                        {
+                            z200=i1+4;
+                            cheak1=9;
+                        }
+                        
+
+                    }
+                    if(cheak1==9)
+                    {
+                        cout<<"愛心同花順";
+                        break;
+                    }
+                }
+                if(cheak1==9)
+                break;
+                //鐵支
+                for (int i2=1;i2<14;i2++)
+                {
+                    if(aa2[i2]>3)
+                    {
+                        cout<<"鐵支"<<i2;
+                        z200=i2;
+                        cheak1=8;
+                    break;
+                    }
+                }
+                if(cheak1==8)
+                break;
+                //同花 
+                if(s2>4)
+                {
+                    cout<<"黑桃同花";
+                    if(a1[1]==1)
+                    {
+                        z200=100;
+                    }
+                    else
+                    for(int o=13;o>1;o=o-1)
+                    {
+                        if(a1[o]==1)
+                        {
+                            z200=o;
+                            break;
+                        }
+                    }
+                    cheak1=7;
+                    break;
+                    
+                }
+                if(c2>4)
+                {
+                    cout<<"梅花同花";
+                    if(a1[14]==1)
+                    {
+                        z200=100;
+                    }
+                    else
+                    for(int o=26;o>14;o=o-1)
+                    {
+                        if(a1[o]==1)
+                        {
+                            z200=o;
+                            break;
+                        }
+                    }
+                    cheak1=7;
+                    break;
+                    
+                }
+                if(d2>4)
+                {
+                    cout<<"菱形同花";
+                    if(a1[27]==1)
+                    {
+                        z200=100;
+                    }
+                    else
+                    for(int o=36;o>27;o=o-1)
+                    {
+                        if(a1[o]==1)
+                        {
+                            z200=o;
+                            break;
+                        }
+                    }
+                    cheak1=7;
+                    break;
+                    
+                }
+                if(h2>4)
+                {
+                    cout<<"愛心同花";
+                     if(a1[40]==1)
+                    {
+                        z200=100;
+                    }
+                    else
+                    for(int o=52;o>40;o=o-1)
+                    {
+                        if(a1[o]==1)
+                        {
+                            z200=o;
+                            break;
+                        }
+                    }
+                    cheak1=7;
+                    break;
+                    
+                }
+                if(cheak1==7)
+                break;
+                
+                //順子
+                for(int i3=1;i3<10;i3++)
+                    {
+
+                        if(aa1[i3]>=1 && aa1[i3+1]>=1 && aa1[i3+2]>=1 && aa1[i3+3]>=1 && aa1[i3+4]>=1)
+                        {
+                            cheak1=6;
+                            z200=i3+4;
+                            if(cheak1==6)
+                        {
+                            cout<<"順子"<<i3<<i3+1<<i3+2<<i3+3<<i3+4;
+                            break;
+                        }
+                        }
+                        
+
+                    }
+                    if(cheak1==6)
+                break;
+
+                //葫蘆
+                for(int i4=1;i4<14;i4++)
+                {
+                    if (aa2[i4]==3)
+                    {
+                        for(int i5=1;i5<14;i5++)
+                        {
+                            if(aa2[i5]==2)
+                            {   
+                                z200=i4*100+i5;
+                                cout<<"葫蘆"<<i4<<" "<<i5;
+                                cheak1=5;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if(cheak1==5)
+                break;
+                //三條
+                for(int i6=1;i6<14;i6++)
+                {
+                    if (aa2[i6]==3)
+                    {   
+                        z200=i6;
+                        cout<<"三條"<<i6;
+                        cheak1=4;
+                    }
+                }
+                if(cheak1==4)
+                break;
+                //兩對 一對
+                int z=0;
+                for(int i7=1;i7<14;i7++)
+                {
+                    if (aa2[i7]==2)
+                    {
+                        z++;
+                        cout<<i7<<endl;
+                        if(aa2[1]>1)
+                        {
+                        z200=100;
+                        break;
+                        }
+                        for(int p=13;p>2;p=p-1)
+                        {
+                            if(aa2[p]>1)
+                            {
+                                z200=p;
+                                break;
+                            }
+                        }
+                    }
+                    
+                }
+                if(z>1)
+                    {
+                    cout<<"兩對";
+                        cheak1=3;
+                        break;
+                    }
+                    if(z==1)
+                    {
+                    cout<<"一對";
+                        cheak1=2;
+                        break;
+                    }
+                    if(cheak1==3)
+                break;
+                if(cheak1==2)
+                break;
+
+                //高牌
+                    
+                    
+                        if(aa2[1]==1)
+                        {
+                            cout<<"高牌"<<"A";
+                            z200=100;
+                            cheak1=1;
+                            break;
+                        }
+                        if(aa2[13]==1)
+                        {
+                            cout<<"高牌"<<"K";
+                            z200=13;
+                            cheak1=1;
+                            break;
+                        }
+                        if(aa2[12]==1)
+                        {
+                            cout<<"高牌"<<"Q";
+                            z200=12;
+                            cheak1=1;
+                            break;
+                        }
+                        if(aa2[11]==1)
+                        {
+                            cout<<"高牌"<<"J";
+                            z200=11;
+                            cheak1=1;
+                            break;
+                        }
+                        if(aa2[10]==1)
+                        {
+                            cout<<"高牌"<<"10";
+                            z200=10;
+                            cheak1=1;
+                            break;
+                        }
+                        if(aa2[9]==1)
+                        {
+                            cout<<"高牌"<<"9";
+                            z200=9;
+                            cheak1=1;
+                            break;
+                        }
+                        if(aa2[8]==1)
+                        {
+                            cout<<"高牌"<<"8";
+                            z200=8;
+                            cheak1=1;
+                            break;
+                        }
+                        if(aa2[7]==1)
+                        {
+                            cout<<"高牌"<<"7";
+                            z200=7;
+                            cheak1=1;
+                            break;
+                        }
+                        if(aa2[61]==1)
+                        {
+                            cout<<"高牌"<<"6";
+                            z200=6;
+                            cheak1=1;
+                            break;
+                        }
+                        if(aa2[5]==1)
+                        {
+                            cout<<"高牌"<<"5";
+                            z200=5;
+                            cheak1=1;
+                            break;
+                        }
+                        if(aa2[4]==1)
+                        {
+                            cout<<"高牌"<<"4";
+                            z200=4;
+                            cheak1=1;
+                            break;
+                        }
+                        if(aa2[3]==1)
+                        {
+                            cout<<"高牌"<<"3";
+                            z200=3;
+                            cheak1=1;
+                            break;
+                        }
+                        if(aa2[2]==1)
+                        {
+                            cout<<"高牌"<<"2";
+                            z200=2;
+                            cheak1=1;
+                            break;
+                        }
+
+                    
+
+
+
+                
+
+            }
+            cout<<endl<<"cheak1="<<cheak1;
+            cout<<endl<<endl;
+            cout<<"玩家分數:"<<cheak*10000+z100<<endl;
+            cout<<"電腦分數:"<<cheak1*10000+z200<<endl;
+            int apoint,bpoint;
+            apoint=cheak*10000+z100;
+            bpoint=cheak1*10000+z200;
+            
+            if(apoint>bpoint)
+            cout<<"玩家獲勝";
+
+            if(apoint<bpoint)
+            cout<<"電腦獲勝";
+
+            if(apoint==bpoint)
+            cout<<"平手";
+
+            
+
+
+           
+
+
+
+        
+        //同花順
+        //鐵支
+        //同花
+        //順子
+        //葫蘆
+        //三條
+        //兩對
+        //一對
+        //高牌
+
+    
+
+    return 0;
+}
