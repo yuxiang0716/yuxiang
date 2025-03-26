@@ -1,0 +1,242 @@
+#include <bits/stdc++.h>
+#include <windows.h> 
+#include <conio.h>  
+#include <ctime> 
+using namespace std;
+
+int main() {
+    
+    int map[12][12];
+    int n=0,e,x,y=0;
+    int s[11][2];
+    int an=5;
+    s[0][0]=5;
+    s[0][1]=5;
+    bool aaa=false;
+    bool bbb=false;
+    bool ccc=false;
+	bool eat=true;
+    
+	
+    		
+    memset(map, 0, sizeof(map)); 
+    
+	for(int i=1;i<11;i++)
+    {
+    	for(int j=1;j<11;j++)
+    	    {
+    	    	map[i][j]=1;
+			}
+	}
+		x=s[0][0];
+			y=s[0][1];
+			map[x][y]=8;
+	
+	
+		
+	cout<<endl<<"welcome to snake game"<<endl;
+	cout<<"Rule 1: You must eat 5 point and win"<<endl;
+	cout<<"Rule 2: The track you have walked cannot be walked again."<<endl;
+	cout<<"Rule 3: Dont hit the border"<<endl;
+	cout<<"Rule 4: Have fun"<<endl;
+	cout<<"Rule 5: 8 is body||9 is apple||1 is border"<<endl;
+	cout<<"Rule 6: ENTER 1 is left||5 is up||2 is down||3 is right"<<endl<<endl;
+
+	cout<<"start"<<endl;	
+	
+	
+	for (int i=0;i<12;i++)
+		{
+			cout<<endl;
+			for(int j=0;j<12;j++)
+				{
+					if(map[i][j]==9){cout<<"@";}
+					
+					if(map[i][j]==8){cout<<"#";}
+					
+					if(map[i][j]==0){cout<<"0";}
+					
+					if(map[i][j]==1){cout<<"*";}
+						
+					
+					
+				}
+		}
+	
+		
+while(bbb==false)
+{	
+		
+		
+		
+		while(ccc==false)
+		{
+			
+    		
+    		
+    	
+			
+				
+				if(eat==true)
+				{
+					start:
+					srand(time(0));
+    				int num1 = rand() % 10 + 1; 
+    				int num2 = rand() % 10 + 1;
+						if(map[num1][num2]!=8 && map[num1][num2]!=0 && map[num1][num2]!=9&&eat==true)
+							{
+								
+								
+								map[num1][num2]=9;
+								cout<<"eat apple";
+								eat=false;
+								break;
+							}
+							else
+							{
+							goto start;
+							}
+							
+					
+					
+				}
+			
+			
+			ccc=true;
+		}
+	ccc=false;
+	
+
+	
+	
+	clock_t start_time = clock(); 
+
+while ((clock() - start_time) < 1000) 
+	{ 
+    	if (_kbhit()) 
+			
+			{ 
+        		int input = _getch() - '0';  
+        		
+        			if (input == 1 || input == 2 || input == 3 || input == 5) 
+						{
+            				an = input; 
+        				}
+        					break;  
+    		}
+	}
+	 /*if (n > 0) { 
+            int tail_x = s[n - 1][0]; 
+            int tail_y = s[n - 1][1]; 
+            map[tail_x][tail_y] = 0;  
+        }
+        
+		
+		for (int i = n - 1; i > 0; i--) {
+            s[i][0] = s[i - 1][0];  // 更新 x 座標
+            s[i][1] = s[i - 1][1];  // 更新 y 座標
+        }
+	*/
+	
+	x=s[0][0];
+	y=s[0][1];	
+	map[x][y]=1;
+	
+	if(an==3)//d
+		{
+			s[0][1]++;
+			
+		}
+	if(an==1)//a
+		{
+			s[0][1]=s[0][1]-1;
+			
+		}
+	if(an==2)//s
+		{
+			s[0][0]++;
+			
+		}
+	if(an==5)//w
+		{
+			s[0][0]=s[0][0]-1;
+			
+		}
+		
+	
+	
+		
+		
+		
+		x=s[0][0];
+		y=s[0][1];
+		
+		if(map[x][y]==9)
+		{	 
+			cout <<endl<<"great"<<n<<endl;
+			eat=true;
+			n++;
+		}
+			cout<<endl<<"continue"<<endl;
+			
+	if(map[s[0][0]][s[0][1]]==0||map[s[0][0]][s[0][1]]==8)
+		
+		{
+			cout<<endl<<endl<<endl<<endl<<endl<<endl<<"gg";
+			return 0;;
+			
+		}
+		
+			map[x][y]=8;
+		
+		for (int i=0;i<12;i++)
+		{
+			cout<<endl;
+			for(int j=0;j<12;j++)
+				{
+					if(map[i][j]==9){cout<<"@";}
+					
+					if(map[i][j]==8){cout<<"#";}
+					
+					if(map[i][j]==0){cout<<"0";}
+					
+					if(map[i][j]==1){cout<<"*";}
+						
+					
+					
+				}
+		}
+		
+		
+	cout <<endl<<" point:"<<n<<endl;
+	
+		
+	if(map[x][y]==9)
+		{	 
+			cout <<endl<<"great"<<n<<endl;
+			eat=true;
+			n++;
+			
+
+		}
+	
+	if(n>5)
+		{
+			cout<<endl<<endl<<endl<<endl<<endl<<endl<<"win";
+			for (int i=0;n>i;i++) 
+			{
+    			cout<<s[i][0]<<"  "<<s[i][1]<<endl;
+			}
+			
+			return 0;
+			
+		}
+	
+
+	
+}
+
+
+	return 0;
+}
+
